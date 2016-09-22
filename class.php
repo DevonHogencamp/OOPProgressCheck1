@@ -4,19 +4,19 @@
 
     *This can be integrated or it can be new (i.e. comment out the previous code so that this property/method will work.
 
-    Incorporate at least one abstract class, with at least three inherited child classes, and at least two methods.
+    *Incorporate at least one abstract class, with at least three inherited child classes, and at least two methods.
 
-    Create two separate files with a .php extension and include the autoloading function in your index file.
+    *Create two separate files with a .php extension and include the autoloading function in your index file.
 
-    Ensure that these two separate classes are functioning within the index file that you will call them to.
+    *Ensure that these two separate classes are functioning within the index file that you will call them to.
 
-    Demonstrate your understanding of the Final keyword by altering the parent external class file and indicating its function with a comment.
+    *Demonstrate your understanding of the Final keyword by altering the parent external class file and indicating its function with a comment.
 
-    Using one of your previous classes, iterate over the attributes of that class.
+    *Using one of your previous classes, iterate over the attributes of that class.
     */
 
     // Created parent class JDMTuner
-    class JDMTuner{
+    final abstract class JDMTuner{
         // Set up all of the attributes
         public $manufacture;
         public $model;
@@ -44,7 +44,7 @@
 
         // Sets the cars vin # to random
         function setVin(){
-            $this->vin = rand();
+            echo $this->vin = rand();
         }
     }
 
@@ -62,8 +62,13 @@
             $this->model = "Skyline";
         }
 
+        // Pull the function from parent of setting vin
+        public function setVin(){
+            return parent::setVin();
+        }
+
         // create setGear function that changes gear of car to whatever user wants
-        function setGear($gear){
+        public function setGear($gear){
             // Brings in the accerleration base
             $this->accelerationBase = $accelerationBase;
 
@@ -71,16 +76,36 @@
             $this->gear = $gear;
 
             // Changes accelerations base on what gear you are in(the lower the gear the more acceleration)
-            $this->acceleration = $accelerationBase / $gear;
+            return $this->acceleration = $accelerationBase / $gear;
         }
 
         // create getSpeed funcion that calculates speed and returns speed
         function getSpeedUp(){
-            // Calculates speed
-            $this->speed = $speed + $acceleration;
+            // Set up all the gears of the car
+            public $gear1 = 1;
+            public $gear2 = 2;
+            public $gear3 = 3;
+            public $gear4 = 4;
+            public $gear5 = 5;
+            public $gear6 = 6;
 
-            // returns speed
-            return $speed;
+            // Speed starts off at 0
+            public $speed = 0;
+
+            // Iterates through all of the gears to increase speed
+            foreach ($this as $key => $value) {
+                // Sets the current gear to the next itteration in the loop
+                $currentGear = $key =>$value;
+
+                // Sets the acceleration = to acceleration base / gear #
+                $acceleration = $accelerationBase / setGear($currentGear);
+
+                // Calculates the speed based on the acceleration
+                $speed = $speed + $acceleration;
+
+                // Displays the current gear and speed to the user
+                echo "Your current gear is " . $currentGear . ", and your speed is " . $speed . " Miles/Hour";
+            }
         }
     }
 
@@ -94,6 +119,11 @@
         function __construct(){
             $this->manufacture = "Nissan";
             $this->model = "Skyline";
+        }
+
+        // Pull the function from parent of setting vin
+        public function setVin(){
+            return parent::setVin();
         }
 
         // Return wether the car is drifting or not

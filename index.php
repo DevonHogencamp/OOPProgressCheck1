@@ -7,28 +7,30 @@
     <body>
         <?php
             /*
-            Using the same project you worked on in the previous progress check, incorporate a static property and method.
+            *Using the same project you worked on in the previous progress check, incorporate a static property and method.
 
-            This can be integrated or it can be new (i.e. comment out the previous code so that this property/method will work.
+            *This can be integrated or it can be new (i.e. comment out the previous code so that this property/method will work.
 
-            Incorporate at least one abstract class, with at least three inherited child classes, and at least two methods.
+            *Incorporate at least one abstract class, with at least three inherited child classes, and at least two methods.
 
-            Create two separate files with a .php extension and include the autoloading function in your index file.
+            *Create two separate files with a .php extension and include the autoloading function in your index file.
 
-            Ensure that these two separate classes are functioning within the index file that you will call them to.
+            *Ensure that these two separate classes are functioning within the index file that you will call them to.
 
-            Demonstrate your understanding of the Final keyword by altering the parent external class file and indicating its function with a comment.
+            *Demonstrate your understanding of the Final keyword by altering the parent external class file and indicating its function with a comment.
 
-            Using one of your previous classes, iterate over the attributes of that class.
+            *Using one of your previous classes, iterate over the attributes of that class.
             */
 
-            // Link to the classes
-            include 'class.php';
+            // Link to the classes using the autoload method
+            spl_autoload_register(function($className){
+                include $className . '.php';
+            });
 
             // Create Instance of Toyota Supra and Nissan Skyline
             $toyotaSupra = new toyotaSupra("Devon Hogencamp");
 
-            // Its hardto give brandon his next dream car but I guess its just a code car I can make another one
+            // Its hard to give brandon his next dream car but I guess its just a code car I can make another one
             $nissanSkyline = new nissanSkyline("Brandon Ching");
 
             // I made myself another nissan skyline
